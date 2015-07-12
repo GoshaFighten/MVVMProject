@@ -64,6 +64,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataManager\DataManager.cs" />
+    <Compile Include="Models\DataManager\FileSystemProvider\FileSystemProvider.cs" />
+    <Compile Include="Models\DataManager\IFileProvider.cs" />
     <Compile Include="Models\Directory.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\Root.cs" />

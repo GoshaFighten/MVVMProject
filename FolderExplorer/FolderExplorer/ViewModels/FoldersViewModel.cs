@@ -38,8 +38,7 @@ namespace FolderExplorer.ViewModels {
             ParentFolder = directory.Parent;
         }
 
-        public bool CanReturn(Directory directory)
-        {
+        public bool CanReturn(Directory directory) {
             return !(directory is Root);
         }
     }
