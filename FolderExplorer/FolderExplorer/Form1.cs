@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace FolderExplorer
 {
-    public partial class Form1 : Form
+    public partial class Form1 : DevExpress.XtraEditors.XtraForm
     {
         public Form1()
         {

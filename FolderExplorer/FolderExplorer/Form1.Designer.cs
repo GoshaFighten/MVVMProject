@@ -28,12 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.formAssistant1 = new DevExpress.XtraBars.FormAssistant();
+            this.foldersView1 = new FolderExplorer.Views.FoldersView();
+            this.SuspendLayout();
+            // 
+            // foldersView1
+            // 
+            this.foldersView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.foldersView1.Location = new System.Drawing.Point(0, 0);
+            this.foldersView1.Name = "foldersView1";
+            this.foldersView1.Size = new System.Drawing.Size(487, 386);
+            this.foldersView1.TabIndex = 0;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(487, 386);
+            this.Controls.Add(this.foldersView1);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private DevExpress.XtraBars.FormAssistant formAssistant1;
+        private Views.FoldersView foldersView1;
+
     }
 }
 
