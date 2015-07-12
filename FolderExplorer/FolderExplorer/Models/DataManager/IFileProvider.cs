@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 namespace FolderExplorer.Models.DataManager {
     public interface IFileProvider {
         string RootPath { get; }
-        List<File> LoadFiles(Directory directory);
+        List<File> LoadFiles(Directory directory, Func<string, bool> filter);
     }
 }
