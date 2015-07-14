@@ -48,15 +48,22 @@ namespace FolderExplorer.ViewModels {
         private void LoadFiles(Directory directory) {
             directory.LoadFiles(ExtensionFilter.Filter);
             Files = directory.NestedFiles;
+            if (!(directory is Root)) {
+                Files.Insert(0, Back.Instance);
+            }
             this.RaisePropertyChanged(vm => vm.Files);
         }
 
         public void Open(File file) {
+            if (file is Back) {
+                Return(ParentFolder);
+                return;
+            }
             ParentFolder = (Directory)file;
         }
 
         public bool CanOpen(File file) {
-            return file is Directory;
+            return file is Directory || file is Back;
         }
 
         public void Return(Directory directory) {

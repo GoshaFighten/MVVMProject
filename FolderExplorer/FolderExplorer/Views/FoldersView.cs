@@ -27,7 +27,7 @@ namespace FolderExplorer.Views {
             fluentAPI.WithEvent<KeyEventArgs>(gridView1, "KeyUp").EventToCommand(x => x.Open(null), x => x.CurrentFile, args => args.KeyCode == Keys.Enter);
             fluentAPI.WithEvent<KeyEventArgs>(gridView1, "KeyUp").EventToCommand(x => x.Return(null), x => x.ParentFolder, args => args.KeyCode == Keys.Back);
             fluentAPI.SetBinding(gridControl1, gc => gc.DataSource, vm => vm.Files);
-            fluentAPI.SetBinding(comboBoxEdit1, cmb => cmb.EditValue, x => x.ExtensionFilter);
+            fluentAPI.SetBinding(barEditItem1, bi => bi.EditValue, x => x.ExtensionFilter);
         }
 
         private void SetupGrid() {
@@ -35,7 +35,7 @@ namespace FolderExplorer.Views {
         }
 
         private void SetupControls() {
-            comboBoxEdit1.Properties.Items.AddRange(FolderExplorer.Core.FilterItem.GetAllFilters());
+            
         }
 
         private void SetupMenu() {
