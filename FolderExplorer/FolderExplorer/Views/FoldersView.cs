@@ -13,14 +13,14 @@ using System.Text.RegularExpressions;
 using DevExpress.XtraGrid.Views.Base;
 using FolderExplorer.Models;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.Utils.Helpers;
 
 namespace FolderExplorer.Views {
     public partial class FoldersView : DevExpress.XtraEditors.XtraUserControl {
         public FoldersView() {
             InitializeComponent();
-            SetupGrid();
-            SetupControls();
             SetupMenu();
+            mvvmContext2.OfType<PropertiesViewModel>().SetBinding(barStaticItem1, bi => bi.Caption, x => x.Info);
             var fluentAPI = mvvmContext1.OfType<FoldersViewModel>();
             fluentAPI.WithEvent<ColumnView, FocusedRowObjectChangedEventArgs>(gridView1, "FocusedRowObjectChanged").SetBinding(x => x.CurrentFile, args => args.Row as File, (gView, entity) => gView.FocusedRowHandle = gView.FindRow(entity));
             fluentAPI.WithEvent<RowClickEventArgs>(gridView1, "RowClick").EventToCommand(x => x.Open(null), x => x.CurrentFile, args => (args.Clicks == 2) && (args.Button == MouseButtons.Left));
@@ -28,14 +28,7 @@ namespace FolderExplorer.Views {
             fluentAPI.WithEvent<KeyEventArgs>(gridView1, "KeyUp").EventToCommand(x => x.Return(null), x => x.ParentFolder, args => args.KeyCode == Keys.Back);
             fluentAPI.SetBinding(gridControl1, gc => gc.DataSource, vm => vm.Files);
             fluentAPI.SetBinding(barEditItem1, bi => bi.EditValue, x => x.ExtensionFilter);
-        }
-
-        private void SetupGrid() {
-            gridView1.OptionsBehavior.Editable = false;
-        }
-
-        private void SetupControls() {
-            
+            fluentAPI.BindCommand(barButtonItem1, x => x.Return(null), x => x.ParentFolder);
         }
 
         private void SetupMenu() {

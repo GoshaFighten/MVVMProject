@@ -16,5 +16,9 @@ namespace FolderExplorer.Models {
         protected Root(Directory parent, string path, string name, Image image)
             : base(parent, path, name, image) {
         }
+
+        public override string GetInfo() {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using FolderExplorer.Models;
 using System.Text.RegularExpressions;
 using FolderExplorer.Core;
+using FolderExplorer.Messages;
 
 namespace FolderExplorer.ViewModels {
     [POCOViewModel]
@@ -34,6 +35,7 @@ namespace FolderExplorer.ViewModels {
         public virtual Directory ParentFolder { get; set; }
         protected void OnParentFolderChanged() {
             Reload();
+            this.RaiseCanExecuteChanged(x => x.Return(null));
         }
 
         private void Reload() {
@@ -44,6 +46,10 @@ namespace FolderExplorer.ViewModels {
         }
 
         public virtual File CurrentFile { get; set; }
+        protected void OnCurrentFileChanged() {
+            Messenger.Default.Send(new FileSelectedMessage(CurrentFile));
+        }
+
         public List<File> Files { get; private set; }
         private void LoadFiles(Directory directory) {
             directory.LoadFiles(ExtensionFilter.Filter);

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,6 +19,10 @@ namespace FolderExplorer.Models {
         public Directory Parent { get; private set; }
         public string Path { get; private set; }
         public string Name { get; private set; }
+        [DisplayName(" ")]
         public Image Image { get; private set; }
+        public virtual string GetInfo() {
+            return string.Format("File: {0}", Name);
+        }
     }
 }

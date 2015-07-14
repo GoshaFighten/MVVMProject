@@ -12,9 +12,12 @@ namespace FolderExplorer.Models {
         }
 
         public List<File> NestedFiles { get; private set; }
-        public void LoadFiles(Func<string, bool> filter)
-        {
+        public void LoadFiles(Func<string, bool> filter) {
             NestedFiles = DataManager.DataManager.CurrentProvider.LoadFiles(this, filter);
+        }
+
+        public override string GetInfo() {
+            return string.Format("Directory: {0}", Name);
         }
     }
 }
