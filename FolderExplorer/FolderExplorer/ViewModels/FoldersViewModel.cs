@@ -84,5 +84,19 @@ namespace FolderExplorer.ViewModels {
         protected void OnExtensionFilterChanged() {
             Reload();
         }
+
+        public void Search()
+        {
+            object[] dialogParams = { ParentFolder, ExtensionFilter };
+
+            MessageResult showDialog = DialogService.ShowDialog(MessageButton.OKCancel, "Search Dialog", "Search", dialogParams, this);
+
+
+        }
+
+        protected virtual IDialogService DialogService
+        {
+            get { return null; }
+        }
     }
 }

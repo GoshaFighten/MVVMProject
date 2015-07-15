@@ -14,12 +14,14 @@ using DevExpress.XtraGrid.Views.Base;
 using FolderExplorer.Models;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.Utils.Helpers;
+using DevExpress.Utils.MVVM;
 
 namespace FolderExplorer.Views {
     public partial class FoldersView : DevExpress.XtraEditors.XtraUserControl {
         public FoldersView() {
             InitializeComponent();
             SetupMenu();
+            MVVMContext.RegisterXtraDialogService();
             mvvmContext2.OfType<PropertiesViewModel>().SetBinding(barStaticItem1, bi => bi.Caption, x => x.Info);
             var fluentAPI = mvvmContext1.OfType<FoldersViewModel>();
             fluentAPI.WithEvent<ColumnView, FocusedRowObjectChangedEventArgs>(gridView1, "FocusedRowObjectChanged").SetBinding(x => x.CurrentFile, args => args.Row as File, (gView, entity) => gView.FocusedRowHandle = gView.FindRow(entity));
@@ -29,6 +31,7 @@ namespace FolderExplorer.Views {
             fluentAPI.SetBinding(gridControl1, gc => gc.DataSource, vm => vm.Files);
             fluentAPI.SetBinding(barEditItem1, bi => bi.EditValue, x => x.ExtensionFilter);
             fluentAPI.BindCommand(barButtonItem1, x => x.Return(null), x => x.ParentFolder);
+            fluentAPI.BindCommand(barButtonItem2, x => x.Search());
         }
 
         private void SetupMenu() {

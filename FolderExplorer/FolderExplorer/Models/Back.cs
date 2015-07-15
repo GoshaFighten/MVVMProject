@@ -8,7 +8,7 @@ using System.Drawing;
 namespace FolderExplorer.Models {
     public class Back : File {
         static Back() {
-            Instance = new Back(null, string.Empty, "..", DevExpress.Images.ImageResourceCache.Default.GetImage("images/navigation/up_16x16.png"));
+            Instance = new Back(null, string.Empty, "[..]", DevExpress.Images.ImageResourceCache.Default.GetImage("images/navigation/up_16x16.png"));
         }
 
         public static Back Instance { get; private set; }
