@@ -11,36 +11,36 @@ using System.ComponentModel;
 
 namespace FolderExplorer.ViewModels {
     [POCOViewModel]
-    public class SearchViewModel : ISupportParameter, IDisposable {
+    public class SearchViewModel : ISupportParameter {
         public SearchViewModel() {
             Files = new BindingList<File>();
         }
 
         public virtual Directory Root { get; set; }
-        private CancellationTokenSource fTokenSource;
         private FilterItem Filter;
+        private object[] parameters;
         public object Parameter {
-            get { return CurrentFile; }
+            get { throw new NotSupportedException(); }
             set {
-                object[] values = (object[])value;
-                Root = (Directory)(values[0]);
-                Filter = (FilterItem)(values[1]);
+                parameters = (object[])value;
+                Root = (Directory)(parameters[0]);
+                Filter = (FilterItem)(parameters[1]);
             }
         }
 
         public virtual string SearchText { get; set; }
         public Task Search(Directory directory) {
-            fTokenSource = new CancellationTokenSource();
-            var token = fTokenSource.Token;
-            Task task = null;
-            task = Task.Factory.StartNew(() => {
-                directory.LoadFiles(Filter.Filter);
-                foreach (File item in directory.NestedFiles) {
-                    if (token.IsCancellationRequested) {
-                        token.ThrowIfCancellationRequested();
+            Action<object> action = null;
+            action = (f) => {
+                Directory folder = (Directory)f;
+                var asyncCommand = this.GetAsyncCommand(x => x.Search(null));
+                foreach (File item in folder.LoadFiles(Filter.Filter)) {
+                    if (asyncCommand.IsCancellationRequested) {
+                        break;
                     }
                     if (item is Directory) {
-                        task.ContinueWith(t => Search((Directory)item), token, TaskContinuationOptions.AttachedToParent, TaskScheduler.Current);
+                        Task.Factory.StartNew(action, item, TaskCreationOptions.AttachedToParent);
+                        // Task.Factory.StartNew(action, item, CancellationToken.None, TaskCreationOptions.AttachedToParent, TaskScheduler.FromCurrentSynchronizationContext());
                     }
                     else {
                         if (item.Name.Contains(SearchText)) {
@@ -48,25 +48,19 @@ namespace FolderExplorer.ViewModels {
                         }
                     }
                 }
-            }, token);
-            return task;
-        }
-
-        public void Cancel() {
-            fTokenSource.Cancel();
+            };
+            // return Task.Factory.StartNew(action, directory, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.FromCurrentSynchronizationContext());
+            return Task.Factory.StartNew(action, directory);
         }
 
         public BindingList<File> Files { get; private set; }
         public virtual File CurrentFile { get; set; }
-        protected virtual IDispatcherService DispatcherService {
-            get { return null; }
+        protected void OnCurrentFileChanged() {
+            parameters[0] = CurrentFile;
         }
 
-        public void Dispose() {
-            if (fTokenSource != null) {
-                fTokenSource.Dispose();
-                fTokenSource = null;
-            }
+        protected virtual IDispatcherService DispatcherService {
+            get { return null; }
         }
     }
 }

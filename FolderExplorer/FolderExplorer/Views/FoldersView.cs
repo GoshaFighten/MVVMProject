@@ -20,6 +20,8 @@ namespace FolderExplorer.Views {
     public partial class FoldersView : DevExpress.XtraEditors.XtraUserControl {
         public FoldersView() {
             InitializeComponent();
+            gridView1.SetupGrid();
+            colImage.SetupIconColumn();
             SetupMenu();
             MVVMContext.RegisterXtraDialogService();
             mvvmContext2.OfType<PropertiesViewModel>().SetBinding(barStaticItem1, bi => bi.Caption, x => x.Info);

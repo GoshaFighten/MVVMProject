@@ -11,9 +11,8 @@ namespace FolderExplorer.Models {
             : base(parent, path, name, image) {
         }
 
-        public List<File> NestedFiles { get; private set; }
-        public void LoadFiles(Func<string, bool> filter) {
-            NestedFiles = DataManager.DataManager.CurrentProvider.LoadFiles(this, filter);
+        public List<File> LoadFiles(Func<string, bool> filter) {
+            return DataManager.DataManager.CurrentProvider.LoadFiles(this, filter);
         }
 
         public override string GetInfo() {

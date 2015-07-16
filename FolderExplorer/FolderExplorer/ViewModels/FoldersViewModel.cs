@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.POCO;
@@ -52,8 +53,7 @@ namespace FolderExplorer.ViewModels {
 
         public List<File> Files { get; private set; }
         private void LoadFiles(Directory directory) {
-            directory.LoadFiles(ExtensionFilter.Filter);
-            Files = directory.NestedFiles;
+            Files = directory.LoadFiles(ExtensionFilter.Filter);
             if (!(directory is Root)) {
                 Files.Insert(0, Back.Instance);
             }
@@ -85,17 +85,17 @@ namespace FolderExplorer.ViewModels {
             Reload();
         }
 
-        public void Search()
-        {
+        public void Search() {
             object[] dialogParams = { ParentFolder, ExtensionFilter };
-
             MessageResult showDialog = DialogService.ShowDialog(MessageButton.OKCancel, "Search Dialog", "Search", dialogParams, this);
-
-
+            if (showDialog == MessageResult.OK) {
+                File target = (File)dialogParams[0];
+                Open(target.Parent);
+                CurrentFile = Files.First(f => f.Path == target.Path);
+            }
         }
 
-        protected virtual IDialogService DialogService
-        {
+        protected virtual IDialogService DialogService {
             get { return null; }
         }
     }

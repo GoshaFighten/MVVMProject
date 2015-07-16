@@ -18,11 +18,12 @@ namespace FolderExplorer.Views {
     public partial class SearchView : DevExpress.XtraEditors.XtraUserControl {
         public SearchView() {
             InitializeComponent();
+            gridView1.SetupGrid();
+            colImage.SetupIconColumn();
             var fluentAPI = mvvmContext1.OfType<SearchViewModel>();
             fluentAPI.SetBinding(textEdit1, te => te.EditValue, x => x.SearchText);
             fluentAPI.BindCommand(simpleButton1, x => x.Search(null), x => x.Root);
-            //fluentAPI.BindCancelCommand(simpleButton2, x => x.Search(null));
-            fluentAPI.BindCommand(simpleButton2, x => x.Cancel());
+            fluentAPI.BindCancelCommand(simpleButton2, x => x.Search(null));
             fluentAPI.SetBinding(gridControl1, gc => gc.DataSource, x => x.Files);
             fluentAPI.WithEvent<ColumnView, FocusedRowObjectChangedEventArgs>(gridView1, "FocusedRowObjectChanged").SetBinding(x => x.CurrentFile, args => args.Row as File, (gView, entity) => gView.FocusedRowHandle = gView.FindRow(entity));
         }
@@ -51,6 +52,15 @@ namespace FolderExplorer.Views {
             if (e.KeyCode == Keys.Enter) {
                 Submit();
             }
+        }
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+            //\bin
+
+            string path = @"D:\FromCustomers\T266012\sample\WindowsFormsApplication4\obj";
+            DevExpress.Utils.Helpers.FileSystemHelper.GetFileSystemEntries(path, DevExpress.Utils.Helpers.IconSizeType.Small, new Size(16, 16));
+            Icon extractAssociatedIcon = Icon.ExtractAssociatedIcon(path);
         }
     }
 }
