@@ -40,6 +40,7 @@
             this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -111,9 +112,10 @@
             this.barEditItem1,
             this.barStaticItem1,
             this.barButtonItem1,
-            this.barButtonItem2});
+            this.barButtonItem2,
+            this.barButtonItem3});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 4;
+            this.barManager1.MaxItemId = 5;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox1});
             this.barManager1.StatusBar = this.bar3;
@@ -127,7 +129,8 @@
             this.bar1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.barEditItem1),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.KeyTip, this.barButtonItem3, "", false, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.Standard, "", "")});
             this.bar1.OptionsBar.UseWholeRow = true;
             this.bar1.Text = "Tools";
             // 
@@ -160,6 +163,13 @@
             this.barButtonItem2.Caption = "Search";
             this.barButtonItem2.Id = 3;
             this.barButtonItem2.Name = "barButtonItem2";
+            // 
+            // barButtonItem3
+            // 
+            this.barButtonItem3.Caption = "View File";
+            this.barButtonItem3.Id = 4;
+            this.barButtonItem3.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F3);
+            this.barButtonItem3.Name = "barButtonItem3";
             // 
             // bar2
             // 
@@ -266,5 +276,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colName;
         private DevExpress.XtraGrid.Columns.GridColumn colImage;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
     }
 }

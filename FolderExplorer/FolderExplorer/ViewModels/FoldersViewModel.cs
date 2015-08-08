@@ -49,6 +49,7 @@ namespace FolderExplorer.ViewModels {
         public virtual File CurrentFile { get; set; }
         protected void OnCurrentFileChanged() {
             Messenger.Default.Send(new FileSelectedMessage(CurrentFile));
+            this.RaiseCanExecuteChanged(x => x.ViewFile(null));
         }
 
         public List<File> Files { get; private set; }
@@ -96,6 +97,23 @@ namespace FolderExplorer.ViewModels {
         }
 
         protected virtual IDialogService DialogService {
+            get { return null; }
+        }
+
+        public void ViewFile(File file) {
+            var document = DocumentManagerService.CreateDocument("FileView", file.Path, this);
+            if (document != null) {
+                document.Title = file.Path;
+                document.Show();
+            }
+        }
+
+        public bool CanViewFile(File file) {
+            return file.GetType() == typeof(File);
+        }
+
+        public virtual IDocumentManagerService DocumentManagerService
+        {
             get { return null; }
         }
     }
