@@ -53,14 +53,5 @@ namespace FolderExplorer.Views {
                 Submit();
             }
         }
-
-        private void simpleButton3_Click(object sender, EventArgs e)
-        {
-            //\bin
-
-            string path = @"D:\FromCustomers\T266012\sample\WindowsFormsApplication4\obj";
-            DevExpress.Utils.Helpers.FileSystemHelper.GetFileSystemEntries(path, DevExpress.Utils.Helpers.IconSizeType.Small, new Size(16, 16));
-            Icon extractAssociatedIcon = Icon.ExtractAssociatedIcon(path);
-        }
     }
 }

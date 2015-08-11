@@ -40,7 +40,6 @@ namespace FolderExplorer.ViewModels {
                     }
                     if (item is Directory) {
                         Task.Factory.StartNew(action, item, TaskCreationOptions.AttachedToParent);
-                        // Task.Factory.StartNew(action, item, CancellationToken.None, TaskCreationOptions.AttachedToParent, TaskScheduler.FromCurrentSynchronizationContext());
                     }
                     else {
                         if (item.Name.Contains(SearchText)) {
@@ -49,8 +48,7 @@ namespace FolderExplorer.ViewModels {
                     }
                 }
             };
-            // return Task.Factory.StartNew(action, directory, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.FromCurrentSynchronizationContext());
-            return Task.Factory.StartNew(action, directory);
+            return Task.Factory.StartNew(action, directory, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         public BindingList<File> Files { get; private set; }
