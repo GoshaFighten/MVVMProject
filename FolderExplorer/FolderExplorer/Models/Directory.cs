@@ -11,8 +11,8 @@ namespace FolderExplorer.Models {
             : base(parent, path, name, image) {
         }
 
-        public List<File> LoadFiles(Func<string, bool> filter) {
-            return DataManager.DataManager.CurrentProvider.LoadFiles(this, filter);
+        public List<File> LoadFiles(Func<string, bool> filter, bool getDirectoryIcons = true) {
+            return DataManager.DataManager.CurrentProvider.LoadFiles(this, filter, getDirectoryIcons);
         }
 
         public override string GetInfo() {

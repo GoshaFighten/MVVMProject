@@ -53,5 +53,9 @@ namespace FolderExplorer.Views {
                 Submit();
             }
         }
+
+        private void simpleButton2_EnabledChanged(object sender, EventArgs e) {
+
+        }
     }
 }

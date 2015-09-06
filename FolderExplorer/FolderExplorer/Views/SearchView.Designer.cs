@@ -84,6 +84,7 @@
             this.simpleButton2.StyleController = this.layoutControl1;
             this.simpleButton2.TabIndex = 7;
             this.simpleButton2.Text = "Stop";
+            this.simpleButton2.EnabledChanged += new System.EventHandler(this.simpleButton2_EnabledChanged);
             // 
             // simpleButton1
             // 

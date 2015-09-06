@@ -34,7 +34,7 @@ namespace FolderExplorer.ViewModels {
             action = (f) => {
                 Directory folder = (Directory)f;
                 var asyncCommand = this.GetAsyncCommand(x => x.Search(null));
-                foreach (File item in folder.LoadFiles(Filter.Filter)) {
+                foreach (File item in folder.LoadFiles(Filter.Filter, false)) {
                     if (asyncCommand.IsCancellationRequested) {
                         break;
                     }
@@ -42,13 +42,13 @@ namespace FolderExplorer.ViewModels {
                         Task.Factory.StartNew(action, item, TaskCreationOptions.AttachedToParent);
                     }
                     else {
-                        if (item.Name.Contains(SearchText)) {
+                        if (item.Name.ToLower().Contains(SearchText.ToLower())) {
                             DispatcherService.BeginInvoke(() => { Files.Add(item);});
                         }
                     }
                 }
             };
-            return Task.Factory.StartNew(action, directory, CancellationToken.None, TaskCreationOptions.None, TaskScheduler.FromCurrentSynchronizationContext());
+            return Task.Factory.StartNew(action, directory);
         }
 
         public BindingList<File> Files { get; private set; }
