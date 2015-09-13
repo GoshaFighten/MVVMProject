@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,10 @@ namespace FolderExplorer.Models.DataManager.FileSystemProvider {
         }
 
         private readonly Size imgSize = new Size(16, 16);
+        public Stream LoadFile(string path) {
+            return new FileStream(path, FileMode.Open);
+        }
+
         public List<File> LoadFiles(Directory directory, Func<string, bool> filter, bool getDirectoryIcons = true) {
             if (string.IsNullOrEmpty(directory.Path)) {
                 return FileSystemHelper.GetFixedDrives().Select(d => new Directory(directory, d.Name, d.Name, FileSystemHelper.GetImage(d.Name, IconSizeType.Small, imgSize))).ToList<File>();
