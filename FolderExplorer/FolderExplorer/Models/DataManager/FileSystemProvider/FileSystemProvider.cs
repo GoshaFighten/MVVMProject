@@ -25,7 +25,7 @@ namespace FolderExplorer.Models.DataManager.FileSystemProvider {
         private static FileSystemEntryCollection GetFileSystemEntries(string path, IconSizeType sizeType, Size itemSize, bool getIcons) {
             FileSystemEntryCollection col = new FileSystemEntryCollection();
             FileSystemHelper.InitDirectories(path, col, sizeType, itemSize, getIcons);
-            WindowsFormsApplication6.Helper.InitFiles(path, col, WindowsFormsApplication6.Helper.IconSizeType.Small, itemSize);
+            FileSystemHelper.InitFiles(path, col, sizeType, itemSize);
             return col;
         }
     }
