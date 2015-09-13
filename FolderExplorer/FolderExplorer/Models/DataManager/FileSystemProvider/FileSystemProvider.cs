@@ -14,8 +14,8 @@ namespace FolderExplorer.Models.DataManager.FileSystemProvider {
         }
 
         private readonly Size imgSize = new Size(16, 16);
-        public Stream LoadFile(string path) {
-            return new FileStream(path, FileMode.Open);
+        public string GetFilePath(string path) {
+            return path;
         }
 
         public List<File> LoadFiles(Directory directory, Func<string, bool> filter, bool getDirectoryIcons = true) {

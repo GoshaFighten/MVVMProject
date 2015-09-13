@@ -25,7 +25,7 @@ namespace FolderExplorer.Views {
         }
 
         private void FileView_Load(object sender, EventArgs e) {
-            richEditControl1.LoadDocument(mvvmContext1.GetViewModel<FileViewModel>().File, DocumentFormat.PlainText);
+            richEditControl1.LoadDocument(mvvmContext1.GetViewModel<FileViewModel>().File);
         }
     }
 
@@ -115,9 +115,7 @@ namespace FolderExplorer.Views {
             string newText = syntaxEditor.Text;
             // Determine language by file extension.
             string ext = System.IO.Path.GetExtension(syntaxEditor.Options.DocumentSaveOptions.CurrentFileName);
-            ext = "cs";
-            ParserLanguageID lang_ID = ParserLanguage.FromFileExtension(ext);
-            
+            ParserLanguageID lang_ID = ParserLanguage.FromFileExtension(ext);            
             // Do not parse HTML or XML.
             if (lang_ID == ParserLanguageID.Html || lang_ID == ParserLanguageID.Xml || lang_ID == ParserLanguageID.None) {
                 return;

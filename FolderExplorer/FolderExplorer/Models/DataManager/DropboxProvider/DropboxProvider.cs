@@ -14,13 +14,13 @@ namespace FolderExplorer.Models.DataManager.DropboxProvider {
             get { return "/"; }
         }
 
-        public Stream LoadFile(string path) {
+        public string GetFilePath(string path) {
             string url = String.Format("https://api-content.dropbox.com/1/files/auto{0}", path);
             Uri uri = new Uri(String.Format("{0}?access_token={1}", url, AccessToken));
             using (WebClient client = new WebClient()) {
                 string localPath = Path.GetTempPath() + Path.GetFileName(path);
                 client.DownloadFile(uri, localPath);
-                return new FileStream(localPath, FileMode.Open);
+                return localPath;
             }
         }
 
