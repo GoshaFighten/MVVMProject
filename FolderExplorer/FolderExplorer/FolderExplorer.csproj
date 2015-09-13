@@ -53,15 +53,10 @@
     <Reference Include="DevExpress.XtraLayout.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraPrinting.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraRichEdit.v15.1, Version=15.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="Nemiro.OAuth, Version=1.10.451.895, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nemiro.OAuth.1.10\lib\net451\Nemiro.OAuth.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -84,7 +79,6 @@
     <Compile Include="Messages\FileSelectedMessage.cs" />
     <Compile Include="Models\Back.cs" />
     <Compile Include="Models\DataManager\DataManager.cs" />
-    <Compile Include="Models\DataManager\DropboxProvider\DropboxProvider.cs" />
     <Compile Include="Models\DataManager\FileSystemProvider\FileSystemProvider.cs" />
     <Compile Include="Models\DataManager\IFileProvider.cs" />
     <Compile Include="Models\Directory.cs" />
@@ -136,7 +130,6 @@
     <EmbeddedResource Include="Views\SearchView.resx">
       <DependentUpon>SearchView.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -149,42 +142,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\DropboxIcons\folder.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\folder_app.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\folder_camera.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\folder_gray.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\folder_public.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\folder_star.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\folder_user.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\folder_user_gray.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\package.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_acrobat.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_actionscript.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_c.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_code.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_compressed.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_cplusplus.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_csharp.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_cup.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_dvd.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_excel.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_film.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_flash.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_gear.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_paint.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_php.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_picture.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_powerpoint.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_ruby.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_sound.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_text.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_tux.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_vector.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_visualstudio.gif" />
-    <EmbeddedResource Include="Resources\DropboxIcons\page_white_word.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
