@@ -128,7 +128,6 @@ namespace FolderExplorer.Views {
 
         public void ForceExecute() {
             Execute();
-            //!Test
         }
 
         #endregion #ISyntaxHighlightServiceMembers
